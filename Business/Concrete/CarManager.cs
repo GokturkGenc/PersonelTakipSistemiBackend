@@ -45,9 +45,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max));
         }
 
-        public IDataResult<Car> GetById(int carId)
+        public IDataResult<Car> GetById(int id)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
