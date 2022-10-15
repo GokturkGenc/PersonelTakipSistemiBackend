@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -19,22 +20,24 @@ namespace Business.Concrete
     public class ColorManager : IColorService
     {
         IColorDal _colorDal;
-        public ColorManager(IColorDal colorDal)
+        ILogger _logger;
+
+        public ColorManager(IColorDal colorDal, ILogger logger)
         {
             _colorDal = colorDal;
+            _logger = logger;
         }
 
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {
-
             _colorDal.Add(color);
             return new SuccessResult(Messages.ColorAddedMessage);
         }
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());  
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
         }
 
         public IDataResult<Color> GetById(int colorId)

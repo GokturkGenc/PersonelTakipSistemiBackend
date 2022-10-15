@@ -16,7 +16,9 @@ namespace Business.Constants
         public static string BrandAddedMessage = "Marka ekleme işlemi başarılı";
         public static string BrandNameInvalid = "Marka ismi en az 3 karakterden oluşmalıdır.";
         public static string BrandsListed = "Markalar Listelendi";
-
+        public static string CarCountOfBrandError = "Bir markadan en fazla 10 adet araç bulunabilir.";
+        public static string BrandNameAlreadyExists = "Aynı isimde bir marka zaten var.";
+        public static string BrandLimitExceeded= "Bir markada bulunabilecek araç sayısı aşıldı.";
 
         //CAR MESSAGES
         public static string CarAddedMessage = "Araç ekleme işlemi başarılı";
@@ -39,6 +41,10 @@ namespace Business.Constants
         public static string UserSignUpConfirm = "Kullanıcı kaydı başarılı.";
         public static string CustomerSignUpConfirmed = "Müşteri Kaydı Başarılı.";
         public static string UsersListed = "Kullanıcılar Listelendi.";
+
+        //CarImage MESSAGES
+        public static string ImageAdded = "Resim yükleme işlemi tamamlandı.";
+        public static string ImageLimitWarning = "Resim yükleme limiti aşıldı.";
         
     }
 }
