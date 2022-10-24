@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,6 +47,15 @@ namespace Business.Constants
         //CarImage MESSAGES
         public static string ImageAdded = "Resim yükleme işlemi tamamlandı.";
         public static string ImageLimitWarning = "Resim yükleme limiti aşıldı.";
-        
+
+        //AUTH MESSAGES
+        public static string AuthorizationDenied = "Yetkiniz yok.";
+        public static string ClaimsListed = "Kullanıcının claimleri listelendi.";
+        public static string UserRegistered = "Kullanıcı kaydedildi.";
+        public static string UserNotFound = "Kullanıcı bulunamadı.";
+        public static string PasswordError = "Parola Hatalı";
+        public static string SuccessfulLogin = "Giriş Başarılı";
+        public static string UserAlreadyExists = "Bu mail zaten kullanılıyor.";
+        public static string AccessTokenCreated = "Token üretildi.";
     }
 }
