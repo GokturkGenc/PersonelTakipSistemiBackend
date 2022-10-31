@@ -10,6 +10,7 @@ namespace Entities.Concrete
 {
     public class CarImage : IEntity
     {
+
         [Key]
         public int ImageId { get; set; }
         public int CarId { get; set; }

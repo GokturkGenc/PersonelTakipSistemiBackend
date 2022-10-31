@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Helpers
 {
-    public class FileHeplerManager : IFileHelper
+    public class FileHelperManager : IFileHelper
     {
         public void Delete(string filePath)//Burada ki string filePath, 'CarImageManager'dan gelen dosyamın kaydedildiği adres ve adı 
         {

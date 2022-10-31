@@ -26,6 +26,7 @@ namespace Business.Constants
         public static string CarAddedMessage = "Araç ekleme işlemi başarılı";
         public static string CarPriceInvalid = "Araç fiyatı 0 liradan fazla olmalıdır.";
         public static string CarsListed = "Araçlar listelendi";
+        public static string CarUpdated = "Araç bilgileri güncellendi.";
 
 
         //COLOR MESSAGES
@@ -57,5 +58,6 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Giriş Başarılı";
         public static string UserAlreadyExists = "Bu mail zaten kullanılıyor.";
         public static string AccessTokenCreated = "Token üretildi.";
+
     }
 }
