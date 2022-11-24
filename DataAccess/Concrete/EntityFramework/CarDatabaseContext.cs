@@ -14,7 +14,6 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server = GK\SQLEXPRESS; Database = RentACarDb;Trusted_Connection = true");
-
         }
 
         public DbSet<Car> Cars { get; set; }
@@ -25,6 +24,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Customer> Customers { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
 

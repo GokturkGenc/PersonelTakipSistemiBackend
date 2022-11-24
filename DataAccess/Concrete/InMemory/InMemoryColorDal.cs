@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,52 +10,63 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
 {
-    public class InMemoryColorDal : IColorDal
+    public class InMemoryColorDal 
+        //: IColorDal
     {
-        List<Color> _colors;
-        public InMemoryColorDal()
-        {
-            _colors = new List<Color>()
-            {
-                new Color{ColorId = 1, ColorName = "Red"},
-                new Color{ColorId = 2, ColorName = "Green"},
-                new Color{ColorId = 3, ColorName = "Blue"}
-            };
-        }
-        public void Add(Color color)
-        {
-            _colors.Add(color);
-        }
-        public void Delete(Color color)
-        {
-            Color colorToDelete = _colors.SingleOrDefault(c => c.ColorId == color.ColorId);
-            _colors.Remove(colorToDelete);
-        }
+        //List<Color> _colors;
+        //public InMemoryColorDal()
+        //{
+        //    _colors = new List<Color>()
+        //    {
+        //        new Color{ColorId = 1, ColorName = "Red"},
+        //        new Color{ColorId = 2, ColorName = "Green"},
+        //        new Color{ColorId = 3, ColorName = "Blue"}
+        //    };
+        //}
+        //public void Add(Color color)
+        //{
+        //    _colors.Add(color);
+        //}
+        //public void Delete(Color color)
+        //{
+        //    Color colorToDelete = _colors.SingleOrDefault(c => c.ColorId == color.ColorId);
+        //    _colors.Remove(colorToDelete);
+        //}
 
-        public Color Get(Expression<Func<Color, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
+        //public Color Get(Expression<Func<Color, bool>> filter)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public List<Color> GetAll()
-        {
-            return _colors;
-        }
+        //public List<Color> GetAll()
+        //{
+        //    return _colors;
+        //}
 
-        public List<Color> GetAll(Expression<Func<Color, bool>> filter = null)
-        {
-            throw new NotImplementedException();
-        }
+        //public List<Color> GetAll(Expression<Func<Color, bool>> filter = null)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public List<Color> GetAllById(int ColorId)
-        {
-            return _colors.Where(c => c.ColorId == ColorId).ToList();
-        }
+        //public List<Color> GetAllById(int ColorId)
+        //{
+        //    return _colors.Where(c => c.ColorId == ColorId).ToList();
+        //}
 
-        public void Update(Color color)
-        {
-            Color colorToUpdate = _colors.SingleOrDefault(c => c.ColorId == color.ColorId);
-            colorToUpdate.ColorName = color.ColorName;
-        }
+        //public IList<Color> GetAll(Expression<Func<Color, bool>> filter = null)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void Update(Color color)
+        //{
+        //    Color colorToUpdate = _colors.SingleOrDefault(c => c.ColorId == color.ColorId);
+        //    colorToUpdate.ColorName = color.ColorName;
+        //}
+
+        //IList<Color> IEntityRepository<Color>.GetAll(Expression<Func<Color, bool>> filter)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

@@ -56,7 +56,7 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<List<CarImage>>(GetDefaultImage(carId).Data);
             }
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId));
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId).ToList());
         }
 
         public IDataResult<CarImage> GetByImageId(int imageId)
@@ -66,13 +66,13 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetAll()
         {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll().ToList());
         }
 
 
         private IResult CheckIfCarImageLimit(int carId)
         {
-            var result = _carImageDal.GetAll(c => c.CarId == carId).Count;
+            var result = _carImageDal.GetAll(c => c.CarId == carId).ToList().Count;
             if (result >= 4)
             {
                 return new ErrorResult();
@@ -88,7 +88,7 @@ namespace Business.Concrete
         }
         private IResult CheckCarImage(int carId)
         {
-            var result = _carImageDal.GetAll(c => c.CarId == carId).Count;
+            var result = _carImageDal.GetAll(c => c.CarId == carId).ToList().Count;
             if (result > 0)
             {
                 return new SuccessResult();

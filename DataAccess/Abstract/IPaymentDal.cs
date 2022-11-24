@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IRentalDal : IEntityRepository<Rental>
+    public interface IPaymentDal : IEntityRepository<Payment>
     {
-        List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null);
-        RentalDetailDto GetRentalDetail(Expression<Func<Rental, bool>> filter);
+        List<Payment> GetPaymentDetails(Expression<Func<Payment, bool>> filter = null);
+        Payment GetPaymentDetail(Expression<Func<Payment, bool>> filter);
     }
 }

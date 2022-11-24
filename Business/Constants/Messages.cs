@@ -31,8 +31,11 @@ namespace Business.Constants
 
         //COLOR MESSAGES
         public static string ColorAddedMessage = "Renk ekleme işlemi başarılı.";
+        public static string ColorNameUpdated = "Renk güncellendi.";
+        public static string ColorNameDeleted = "Renk silindi";
         public static string ColorNameInvalid = "Renk ismi en az 3 karakterden oluşmalıdır.";
         public static string ColorsListed = "Renkler Listelendi.";
+        public static string ColorNameAlreadyExists = "Renk zaten mevcut.";
 
         //RENTAL MESSAGES
         public static string RentalConfirm = "Araç kiralama işlemi başarılı.";
@@ -58,6 +61,7 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Giriş Başarılı";
         public static string UserAlreadyExists = "Bu mail zaten kullanılıyor.";
         public static string AccessTokenCreated = "Token üretildi.";
+        public static string UserUpdated = "Kullanıcı bilgileri güncellendi.";
 
     }
 }

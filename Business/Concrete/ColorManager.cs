@@ -4,8 +4,10 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using FluentValidation;
 using System;
@@ -31,18 +33,48 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {
+            IResult result = BusinessRules.Run(CheckIfColorNameExists(color.ColorName));
+
+            if (result != null)
+            {
+                return result;
+
+            }
             _colorDal.Add(color);
-            return new SuccessResult(Messages.ColorAddedMessage);
+            return new SuccessResult(Messages.BrandAddedMessage);
+        }
+
+        public IResult Update(Color color)
+        {
+            _colorDal.Update(color);
+            return new SuccessResult(Messages.ColorNameUpdated);
+        }
+
+        public IResult Delete(Color color)
+        {
+            _colorDal.Delete(color);
+            return new SuccessResult(Messages.ColorNameDeleted);
         }
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll().ToList());
         }
 
         public IDataResult<Color> GetById(int colorId)
         {
             return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == colorId));
         }
+
+        private IResult CheckIfColorNameExists(string colorName)
+        {
+            var result = _colorDal.GetAll(c => c.ColorName == colorName).ToList().Any();
+            if (result)
+            {
+                return new ErrorResult(Messages.ColorNameAlreadyExists);
+            }
+            return new SuccessResult();
+        }
+
     }
 }

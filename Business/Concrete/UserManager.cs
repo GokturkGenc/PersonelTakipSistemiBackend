@@ -5,9 +5,13 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,19 +26,60 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        public List<OperationClaim> GetClaims(User user)
-        {
-            return _userDal.GetClaims(user);
-        }
-
-        public void Add(User user)
+        public IResult Add(User user)
         {
             _userDal.Add(user);
+
+            return new SuccessResult();
         }
 
-        public User GetByMail(string email)
+        public IResult Delete(User user)
         {
-            return _userDal.Get(u => u.Email == email);
+            _userDal.Delete(user);
+
+            return new SuccessResult();
+        }
+
+        public IResult Update(User user)
+        {
+            _userDal.Update(user);
+
+            return new SuccessResult();
+        }
+
+        public IDataResult<List<User>> GetAll()
+        {
+            return new SuccessDataResult<List<User>>(_userDal.GetAll().ToList());
+        }
+
+        public IDataResult<User> GetById(int userId)
+        {
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId));
+        }
+
+        public IDataResult<User> GetByMail(string email)
+        {
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
+        }
+
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
+        {
+            return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
+        }
+
+        public IDataResult<User> GetUserDetail(int userId)
+        {
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId));
+        }
+
+        public IDataResult<List<User>> GetUsersByFullName(string firstName, string lastName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<List<User>> GetUsersDetails()
+        {
+            throw new NotImplementedException();
         }
     }
 }

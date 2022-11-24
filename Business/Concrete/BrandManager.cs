@@ -44,9 +44,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.BrandAddedMessage);
         }
 
+        public IResult Delete(Brand brand)
+        {
+            throw new NotImplementedException();
+        }
+
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandsListed);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll().ToList(), Messages.BrandsListed);
         }
 
         public IDataResult<Brand> GetById(int brandId)
@@ -61,7 +66,7 @@ namespace Business.Concrete
 
         private IResult CheckIfBrandNameExists(string brandName)
         {
-            var result = _brandDal.GetAll(b => b.BrandName == brandName).Any();
+            var result = _brandDal.GetAll(b => b.BrandName == brandName).ToList().Any();
             if (result)
             {
                 return new ErrorResult(Messages.BrandNameAlreadyExists);

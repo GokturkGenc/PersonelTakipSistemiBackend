@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Core.Entities.Concrete;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,19 +9,44 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ColorsController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private IColorService _colorService;
+        private IUserService _userService;
 
-        public ColorsController(IColorService colorService)
+        public UsersController(IUserService userService)
         {
-            _colorService = colorService;
+            _userService = userService;
+        }
+
+        [HttpPost("add")]
+        public IActionResult Add(User user)
+        {
+            var result = _userService.Add(user);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+        [HttpDelete("delete")]
+        public IActionResult Delete(User user)
+        {
+            var result = _userService.Delete(user);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _colorService.GetAll();
+            var result = _userService.GetAll();
 
             if (result.Success)
             {
@@ -29,11 +55,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        [HttpGet("getbyemail")]
+        public IActionResult GetByMail(string email)
         {
-            var result = _colorService.GetById(id);
-
+            var result = _userService.GetByMail(email);
             if (result.Success)
             {
                 return Ok(result);
@@ -41,28 +66,5 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("add")]
-        public IActionResult Add(Color color)
-        {
-            var result = _colorService.Add(color);
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpDelete("delete")]
-        public IActionResult Delete(Color color)
-        {
-            var result = _colorService.Delete(color);
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
     }
 }
