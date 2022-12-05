@@ -35,8 +35,9 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("update")]
-        public IActionResult Update(Payment payment)
+
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] Payment payment)
         {
             var result = _paymentService.Update(payment);
             if (result.Success)

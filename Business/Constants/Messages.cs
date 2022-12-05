@@ -21,6 +21,7 @@ namespace Business.Constants
         public static string CarCountOfBrandError = "Bir markadan en fazla 10 adet araç bulunabilir.";
         public static string BrandNameAlreadyExists = "Aynı isimde bir marka zaten var.";
         public static string BrandLimitExceeded= "Bir markada bulunabilecek araç sayısı aşıldı.";
+        public static string BrandUpdated = "Marka güncellendi.";
 
         //CAR MESSAGES
         public static string CarAddedMessage = "Araç ekleme işlemi başarılı";
@@ -63,5 +64,11 @@ namespace Business.Constants
         public static string AccessTokenCreated = "Token üretildi.";
         public static string UserUpdated = "Kullanıcı bilgileri güncellendi.";
 
+        //OPERATION MESSAGES
+        public static string OperationNameExist = "Operasyon adı zaten mevcut.";
+        public static string OperationAddded = "Operasyon eklendi";
+        public static string OperationsListed = "Operasyonlar Listelendi";
+        public static string UserOperationUpdated = "Kullanıcı operasyonları güncellendi.";
+        
     }
 }

@@ -1,27 +1,25 @@
 ﻿using Business.Abstract;
-using Business.Concrete;
 using Core.Entities.Concrete;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class UserOperationsController : ControllerBase
     {
-        private ICarService _carService;
-
-        public CarsController(ICarService carService)
+        private IUserOperationClaimService _userOperationClaimService;
+        public UserOperationsController(IUserOperationClaimService userOperationClaimService)
         {
-            _carService = carService;
+            _userOperationClaimService = userOperationClaimService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _carService.GetAll();
+            var result = _userOperationClaimService.GetAll();
 
             if (result.Success)
             {
@@ -33,7 +31,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _carService.GetById(id);
+            var result = _userOperationClaimService.GetById(id);
 
             if (result.Success)
             {
@@ -42,10 +40,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbycolor")]
-        public IActionResult GetByColorId(int colorId)
+        [HttpGet("getoperationsbyuserid")]
+        public IActionResult GetUserOperationsByUserId(int userId)
         {
-            var result = _carService.GetCarsByColorId(colorId);
+            var result = _userOperationClaimService.GetUserOperationsByUserId(userId);
 
             if (result.Success)
             {
@@ -54,10 +52,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbybrand")]
-        public IActionResult GetByBrand(int brandId)
+        [HttpGet("getuseroperationdetails")]
+        public IActionResult GetUserOperationDetails()
         {
-            var result = _carService.GetCarsByBrandId(brandId);
+            var result = _userOperationClaimService.GetUserOperationDetails();
 
             if (result.Success)
             {
@@ -66,22 +64,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getcardetails")]
-        public IActionResult GetCarDetails()
+        [HttpGet("getuseroperationdetail")]
+        public IActionResult GetUserOperationDetail(int userOpId)
         {
-            var result = _carService.GetCarDetails();
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getcardetail")]
-        public IActionResult GetCarDetail(int carId)
-        {
-            var result = _carService.GetCarDetail(carId);
+            var result = _userOperationClaimService.GetUserOperationDetail(userOpId);
 
             if (result.Success)
             {
@@ -91,9 +77,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Car car)
+        public IActionResult Add(UserOperationClaim userOp)
         {
-            var result = _carService.Add(car);
+            var result = _userOperationClaimService.Add(userOp);
 
             if (result.Success)
             {
@@ -103,9 +89,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public IActionResult Delete(Car car)
+        public IActionResult Delete(UserOperationClaim userOp)
         {
-            var result = _carService.Delete(car);
+            var result = _userOperationClaimService.Delete(userOp);
 
             if (result.Success)
             {
@@ -115,28 +101,14 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update(Car car)
+        public IActionResult Update([FromBody] UserOperationClaim userOp)
         {
-            var result = _carService.Update(car);
+            var result = _userOperationClaimService.Update(userOp);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-
-        [HttpGet("getcarsbycolorandbrand")]
-        public IActionResult GetCarsByColorAndBrand(int colorId, int brandId)
-        {
-
-            var result = _carService.GetCarsByColorAndBrand(colorId, brandId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-
-        }
-
     }
 }

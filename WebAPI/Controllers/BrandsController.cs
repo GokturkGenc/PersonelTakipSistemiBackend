@@ -20,9 +20,8 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _brandService.GetAll();
-
             if (result.Success)
-            {
+            { 
                 return Ok(result);
             }
             return BadRequest(result);
@@ -52,11 +51,21 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] Brand brand)
+        {
+            var result = _brandService.Update(brand);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpDelete("delete")]
         public IActionResult Delete(Brand brand)
         {
             var result = _brandService.Delete(brand);
-
             if (result.Success)
             {
                 return Ok(result);

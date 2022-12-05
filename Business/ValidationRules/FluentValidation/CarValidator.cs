@@ -13,7 +13,6 @@ namespace Business.ValidationRules.FluentValidation
         public CarValidator()
         {
             RuleFor(c => c.DailyPrice).GreaterThan(100);
-
         }
     }
 }

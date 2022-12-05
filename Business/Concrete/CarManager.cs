@@ -49,7 +49,6 @@ namespace Business.Concrete
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-
             return new SuccessResult();
         }
 
